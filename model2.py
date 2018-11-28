@@ -6,20 +6,20 @@ warnings.filterwarnings('ignore')
 
 df = pd.read_csv('bank-full.csv', sep = ';', header=0)
 
-data = df[['day', 'month', 'y', 'duration']]
+df_lim = df[['day', 'month', 'y', 'duration']]
 
 ### Make dictionary of
 dict = {}
 
-for i in range(len(data)):
-    m = data.iloc[i].month
+for i in range(len(df_lim)):
+    m = df_lim.iloc[i].month
     if m not in dict.keys():
         dict[m] = {}
-    d = data.iloc[i].day
+    d = df_lim.iloc[i].day
     if d not in dict[m].keys():
         dict[m][d] = [0,0,0]
-    s = data.iloc[i].y
-    dur = data.iloc[i].duration
+    s = df_lim.iloc[i].y
+    dur = df_lim.iloc[i].duration
     if s == 'yes':
         dict[m][d][1] += 1
     dict[m][d][0] += 1
@@ -83,7 +83,7 @@ plt.figure()
 plt.scatter(X[2]/X[0], X[1]/X[0], marker='x', s=.2, color='black')
 plt.xlabel('Average duration of calls')
 plt.ylabel('Rate of success')
-plt.title("Average successrate against average duration of calls per day")
+plt.title("Successrate against average duration of calls per day")
 plt.savefig('successrate_by_duration.png', dpi=400)
 
 X = np.array([N,S,D])

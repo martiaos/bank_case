@@ -1,4 +1,4 @@
-jupyter nbconvert Case.ipynb --to slides --post serve
+jupyter nbconvert Presentation.ipynb --to slides --post serve
 
 -- Duration mot suksessrate?
 -- Duration mot suksesser?
