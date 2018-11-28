@@ -21,7 +21,7 @@ plt.show()
 categories = ['job', 'marital', 'education', 'contact', 'month', 'poutcome']
 for var in categories:
     cat_list='var'+'_'+var
-    cat_list = pd.get_dummies(df[var], drop_first=True, prefix=var)
+    cat_list = pd.get_dummies(df[var], prefix=var)
     df = df.join(cat_list)
 
 ## Create boolean variables
@@ -35,7 +35,11 @@ for var in bools:
     df = boolean(df, var)
 
 ## Remove variables
-#df['intercept'] = 1
+df = df.drop(['job_unemployed','marital_single','education_primary', \
+'contact_cellular', 'month_jan', 'poutcome_failure'],1)
+
+df['intercept'] = 1
+
 variables = (df.columns.values.tolist())
 keep = [i for i in variables if i not in categories]
 data = df[keep]
@@ -48,7 +52,7 @@ data.info()
 print(df.groupby("y").mean())
 
 a = 0
-months = ['jan', 'feb', 'mar', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+months = ['feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
 for month in months:
     i = 'month_' + month
     a += df.groupby('y')[i].mean()

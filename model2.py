@@ -6,7 +6,7 @@ warnings.filterwarnings('ignore')
 
 df = pd.read_csv('bank-full.csv', sep = ';', header=0)
 
-data = df[['day', 'month', 'y']]
+data = df[['day', 'month', 'y', 'duration']]
 
 ### Make dictionary of
 dict = {}
@@ -17,11 +17,14 @@ for i in range(len(data)):
         dict[m] = {}
     d = data.iloc[i].day
     if d not in dict[m].keys():
-        dict[m][d] = [0,0]
+        dict[m][d] = [0,0,0]
     s = data.iloc[i].y
+    dur = data.iloc[i].duration
     if s == 'yes':
         dict[m][d][1] += 1
     dict[m][d][0] += 1
+    dict[m][d][2] += dur
+
 
 M = {}
 for m in dict.keys():
@@ -56,12 +59,15 @@ plt.savefig('success_rate_by_month.png', dpi=400)
 
 N = []
 S = []
+D = []
 for m in dict.keys():
     for d in dict[m].keys():
         n = dict[m][d][0]
         s = dict[m][d][1]
+        dur = dict[m][d][2]
         N.append(n)
         S.append(s)
+        D.append(dur)
 
 X = np.array([N,S])
 plt.figure()
@@ -70,3 +76,20 @@ plt.xlabel('Number of calls')
 plt.ylabel('Rate of success')
 plt.title("Success rate by number of calls per day")
 plt.savefig('successrate_by_number.png', dpi=400)
+
+
+X = np.array([N,S,D])
+plt.figure()
+plt.scatter(X[2]/X[0], X[1]/X[0], marker='x', s=.2, color='black')
+plt.xlabel('Average duration of calls')
+plt.ylabel('Rate of success')
+plt.title("Average successrate against average duration of calls per day")
+plt.savefig('successrate_by_duration.png', dpi=400)
+
+X = np.array([N,S,D])
+plt.figure()
+plt.scatter(X[2]/X[0], X[1], marker='x', s=.2, color='black')
+plt.xlabel('Average duration of calls')
+plt.ylabel('Number of successes')
+plt.title("Successes against average duration of calls per day")
+plt.savefig('Succeses_by_duration.png', dpi=400)
