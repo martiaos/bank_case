@@ -1,11 +1,11 @@
 jupyter nbconvert Case.ipynb --to slides --post serve
 
-duration mot suksessrate?
-duration mot suksesser?
+-- Duration mot suksessrate?
+-- Duration mot suksesser?
 
 jun vs okt, koeffisient på jun?
 
-baseline variables; edu primary, job unemployed, marital single
+-- Baseline variables; edu primary, job unemployed, marital single
 contact cellular, month_jan, poutcome failure
 
 effekt av balance?
