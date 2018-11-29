@@ -32,7 +32,7 @@ for m in dict.keys():
     for d in dict[m].keys():
         n += dict[m][d][0]
         s += dict[m][d][1]
-    M[m] = [s/n]
+    M[m] = s/n
 
 months = {'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6,\
           'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12}
@@ -40,7 +40,7 @@ months = {'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6,\
 R = [[],[]]
 i = 0
 for keys in M:
-    R[0].append((M[keys][0]))
+    R[0].append((M[keys]))
     R[1].append(months[keys])
     i += 1
 
