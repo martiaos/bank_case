@@ -1,4 +1,4 @@
-jupyter nbconvert Presentation.ipynb --to slides --post serve
+﻿jupyter nbconvert Presentation.ipynb --to slides --post serve
 
 -- Duration mot suksessrate?
 -- Duration mot suksesser?
@@ -8,8 +8,8 @@ jun vs okt, koeffisient på jun?
 -- Baseline variables; edu primary, job unemployed, marital single
 contact cellular, month_jan, poutcome failure
 
-effekt av balance?
+Effekt av balance?
 
-antall suksesser mot måned
+Antall suksesser mot måned
 
-sum av måneder i slides
+Sum av måneder i slides
